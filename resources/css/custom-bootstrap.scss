@@ -1,0 +1,20 @@
+// Scope Bootstrap and Summernote styles to `.bootstrap-styled`
+.bootstrap-styled {
+  // Import only necessary Bootstrap SCSS parts for Summernote
+  @import "node_modules/bootstrap/dist/css/bootstrap";
+
+  @import "node_modules/summernote/dist/summernote-lite";
+
+  ol, ul {
+    list-style-type: initial;
+    padding-left: 1.5rem; // Adjust this if you need more/less padding
+  }
+
+  // You can also add specific styles to make them look more like Bootstrap's defaults
+  ol {
+    list-style-type: decimal;
+  }
+  ul {
+    list-style-type: disc;
+  }
+}
