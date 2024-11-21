@@ -76,7 +76,7 @@
 
     <section class="flex flex-1 flex-col p-4 gap-2 bg-white rounded-lg shadow-sm mb-4">
       @if ($artikel->isEmpty())
-        <div class="block p-2.5 w-full mb-4 text-sm text-gray-500 bg-gray-50 text-center">Pegawai tidak ditemukan...</div>
+        <div class="block p-2.5 w-full mb-4 text-sm text-gray-500 bg-gray-50 text-center">Artikel tidak ditemukan...</div>
       @else
         <div class="flex flex-col gap-4">
         @foreach ($artikel as $a)
