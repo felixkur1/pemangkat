@@ -15,7 +15,7 @@ class BerandaController extends Controller
     {
         $greetings = HomepageContent::query()->where('name', '=', 'sambutan')->first();
         $messages  = HomepageContent::query()->where('name', '=', 'sekapur-sirih')->first();
-        $articles = Article::query()->where('highlighted', '=', true)->limit(5)->get();
+        $articles = Article::query()->where('published_at', '!=', null)->where('highlighted', '=', true)->limit(5)->get();
 
         return view('guest.beranda.index', compact('greetings', 'messages', 'articles'));
     }

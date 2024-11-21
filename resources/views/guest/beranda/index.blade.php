@@ -17,11 +17,12 @@
         {!! $messages->content ?? "" !!}
       </div>
     </div>
+
     <div class="text-3xl font-semibold mb-4">
       Wilayah Administrasi
     </div>
     {{-- Batas Administrasi --}}
-    <div id="map" class="h-[400px] w-full md:w-3/4 mb-8"></div>
+    <div id="map" class="h-[400px] w-full md:w-2/3 mb-8"></div>
     <script>
         // Inisialisasi peta
         var map = L.map('map').setView([1.1667, 108.9667], 11);
