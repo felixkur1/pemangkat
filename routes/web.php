@@ -6,6 +6,7 @@ use App\Http\Controllers\DokumenPublikController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index_guest'])->name('beranda.index.guest');
@@ -20,9 +21,13 @@ Route::get('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 
 Route::get('/artikel', [ArtikelController::class, 'index_guest'])->name('artikel.index.guest');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show.guest');
 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+
+
 Route::prefix('/admin')->group(function () {
   Route::view('/', 'admin.index')->name('admin.dashboard');
-
+  
   Route::get('/beranda', [BerandaController::class, 'index_admin'])->name('beranda.index.admin');
   Route::put('/beranda', [BerandaController::class, 'update'])->name('admin.beranda.update');
 
