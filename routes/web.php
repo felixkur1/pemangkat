@@ -17,6 +17,8 @@ Route::get('/struktur-organisasi', [StrukturOrganisasiController::class, 'index_
 Route::get('/dokumen-publik', [DokumenPublikController::class, 'index_guest'])->name('dokumen-publik.index.guest');
 Route::get('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'download'])->name('dokumen-publik.download');
 
+Route::view('/lokasi-penting', 'guest.lokasi-penting.index')->name('lokasi-penting.index.guest');
+
 Route::get('/artikel', [ArtikelController::class, 'index_guest'])->name('artikel.index.guest');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show.guest');
 
@@ -51,6 +53,8 @@ Route::prefix('/admin')->group(function () {
   Route::put('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'update'])->name('dokumen-publik.update.admin');
   Route::delete('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'destroy'])->name('dokumen-publik.destroy.admin');
 
+  //Route::view()->name('lokasi-penting.index.admin');
+
   Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.admin');
   Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.admin');
   Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.admin');
@@ -61,4 +65,8 @@ Route::prefix('/admin')->group(function () {
   Route::get('/artikel/search', [ArtikelController::class, 'search'])->name('artikel.search');
 
   Route::view('/user', 'admin.user.index')->name('user.index.admin');
+});
+
+Route::prefix('/author')->group(function () {
+  Route::view('/', 'author.index');
 });
