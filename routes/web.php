@@ -58,8 +58,6 @@ Route::prefix('/admin')->group(function () {
   Route::put('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'update'])->name('dokumen-publik.update.admin');
   Route::delete('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'destroy'])->name('dokumen-publik.destroy.admin');
 
-  //Route::view()->name('lokasi-penting.index.admin');
-
   Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.admin');
   Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.admin');
   Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.admin');
@@ -67,11 +65,16 @@ Route::prefix('/admin')->group(function () {
   Route::put('/artikel/{article}/toggle-publish', [ArtikelController::class, 'togglePublish'])->name('artikel.toggle-publish.admin');
   Route::put('/artikel/{article}/toggle-highlight', [ArtikelController::class, 'toggleHighlight'])->name('artikel.toggle-highlight.admin');
   Route::delete('/artikel/{article}', [ArtikelController::class, 'destroy'])->name('artikel.destroy.admin');
-  Route::get('/artikel/search', [ArtikelController::class, 'search'])->name('artikel.search');
 
   Route::view('/user', 'admin.user.index')->name('user.index.admin');
 });
 
 Route::prefix('/author')->group(function () {
-  Route::view('/', 'author.index');
+  Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.author');
+  Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.author');
+  Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.author');
+  Route::put('/artikel/{article}', [ArtikelController::class, 'update'])->name('artikel.update.author');
+  Route::put('/artikel/{article}/toggle-publish', [ArtikelController::class, 'togglePublish'])->name('artikel.toggle-publish.author');
+  Route::delete('/artikel/{article}', [ArtikelController::class, 'destroy'])->name('artikel.destroy.author');
+  
 });

@@ -16,7 +16,6 @@
       </div>
     </div>
 
-
     <div class="text-3xl font-semibold mb-4">
       Statistik Kecamatan Pemangkat
     </div>

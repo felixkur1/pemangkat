@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -23,7 +24,7 @@ class LoginController extends Controller
 
         if ($user) {
             // Periksa apakah password yang diinput cocok dengan hash di database
-            if (\Hash::check($request->password, $user->password)) {
+            if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
                 // Cek role user dan arahkan ke halaman yang sesuai
                 if ($user->role === 'admin') {
