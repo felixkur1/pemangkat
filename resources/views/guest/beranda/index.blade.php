@@ -1,6 +1,4 @@
 <x-layout.guest>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <main class="w-full flex flex-col items-center">
     <div class="md:w-2/3 w-full flex flex-col items-center gap-4">
       <div class="text-3xl font-semibold italic">
@@ -17,49 +15,24 @@
         {!! $messages->content ?? "" !!}
       </div>
     </div>
+
+
     <div class="text-3xl font-semibold mb-4">
-      Wilayah Administrasi
+      Statistik Kecamatan Pemangkat
     </div>
-    {{-- Batas Administrasi --}}
-    <div id="map" class="h-[400px] w-full md:w-3/4 mb-8"></div>
-    <script>
-        // Inisialisasi peta
-        var map = L.map('map').setView([1.1667, 108.9667], 11);
+    <div>
+      <div id="myplot"></div>
+      <script type="module">
 
-        // Tambahkan layer OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+        import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
 
-        // Ambil data GeoJSON menggunakan fetch
-        fetch('{{ asset("batas-wilayah-pemangkat.geojson") }}')
-            .then(response => response.json())
-            .then(data => {
-                // Tambahkan GeoJSON ke peta
-                const pemangkatLayer = L.geoJSON(data, {
-                    style: {
-                        fillColor: '#DEEBF7',
-                        weight: 2,
-                        opacity: 1,
-                        color: '#08519C',
-                        fillOpacity: 0.6
-                    },
-                    onEachFeature: function(feature, layer) {
-                        // Tambahkan popup jika ada properti
-                        if (feature.properties && feature.properties.name) {
-                            layer.bindPopup(feature.properties.name);
-                        }
-                    }
-                }).addTo(map);
+        const plot = Plot.rectY({length: 100}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+        const div = document.querySelector("#myplot");
+        div.append(plot);
 
-                // Fit bounds ke area Pemangkat
-                map.fitBounds(pemangkatLayer.getBounds(), {
-                    padding: [50, 50]
-                });
-            })
-            .catch(error => console.error('Error loading GeoJSON:', error));
-    </script>
-    <div class="text-4xl font-semibold mb-4">
+      </script>
+    </div>
+    <div class="text-3xl font-semibold mb-4">
       Kumpulan Berita
     </div>
   </main>

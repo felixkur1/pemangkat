@@ -1,6 +1,11 @@
 @php
   $navItems = [
   [
+    'name' => 'Dashboard',
+    'type' => 'link',
+    'url' => route('admin.dashboard'),
+  ],
+  [
     'name' => 'Beranda',
     'type' => 'link',
     'url' => route('beranda.index.admin'),
