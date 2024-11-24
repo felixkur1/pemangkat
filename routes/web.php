@@ -23,11 +23,15 @@ Route::view('/lokasi-penting', 'guest.lokasi-penting.index')->name('lokasi-penti
 Route::get('/artikel', [ArtikelController::class, 'index_guest'])->name('artikel.index.guest');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show.guest');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::middleware("guest")->group(function () {
+  Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+});
+
+Route::post('/logout', [LoginController::class, 'logout'])->middleware("auth");
 
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   Route::view('/', 'admin.index')->name('admin.dashboard');
   
   Route::get('/beranda', [BerandaController::class, 'index_admin'])->name('beranda.index.admin');
@@ -68,10 +72,11 @@ Route::prefix('/admin')->group(function () {
   Route::put('/artikel/{article}/toggle-highlight', [ArtikelController::class, 'toggleHighlight'])->name('artikel.toggle-highlight.admin');
   Route::delete('/artikel/{article}', [ArtikelController::class, 'destroy'])->name('artikel.destroy.admin');
   Route::get('/artikel/search', [ArtikelController::class, 'search'])->name('artikel.search');
-
-  Route::view('/user', 'admin.user.index')->name('user.index.admin');
+  
+  Route::view('/author-setting', 'admin.author-setting.index')->name('author-setting.index.admin');
+  Route::post('/author-setting', [ArtikelController::class, 'store'])->name('author-setting.store.admin');
 });
 
-Route::prefix('/author')->group(function () {
-  Route::view('/', 'author.index');
+Route::prefix('/author')->middleware(['auth','author'])->group(function () {
+  Route::view('/', 'author.index')->name("author.index");
 });

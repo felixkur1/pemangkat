@@ -13,30 +13,30 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        $request->validate([
-            'username' => 'required|string|max:255',
-            'password' => 'required|string|min:8',
+        
+        $login = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
         ]); 
         
-
-        $user = \App\Models\User::where('username', $request->username)->first();
-
-        if ($user) {
-            // Periksa apakah password yang diinput cocok dengan hash di database
-            if (\Hash::check($request->password, $user->password)) {
-                Auth::login($user);
-                // Cek role user dan arahkan ke halaman yang sesuai
-                if ($user->role === 'admin') {
-                    return redirect()->intended(route("beranda.index.admin"));
-                } elseif ($user->role === 'author') {
-                    return redirect()->intended(route("artikel.index.admin"));
-                }
-            } else {
-                return back()->withErrors(['password' => 'Password salah.']);
-            }
-        } else {
-            return back()->withErrors(['username' => 'Username tidak ditemukan.']);
+        if (!Auth::attempt($login)){
+            return back()->withInput(["username"=>$login['username']]);
         }
+
+        $request->session()->regenerate();
+        if ($request->user()->role=='admin'){
+            return redirect()->route('beranda.index.admin');
+        }else{
+            return redirect()->route('author.index');
+        }
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('login');
     }
 }
 
