@@ -22,7 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('views')->default(0);
             $table->timestamp('published_at')->nullable();
             $table->boolean('highlighted')->default(false);
+            
             $table->timestamps();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

@@ -62,8 +62,6 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   Route::put('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'update'])->name('dokumen-publik.update.admin');
   Route::delete('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'destroy'])->name('dokumen-publik.destroy.admin');
 
-  //Route::view()->name('lokasi-penting.index.admin');
-
   Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.admin');
   Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.admin');
   Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.admin');
@@ -78,5 +76,11 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::prefix('/author')->middleware(['auth','author'])->group(function () {
-  Route::view('/', 'author.index')->name("author.index");
+  Route::view('/',"author.index")->name('author.index');
+  Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.author');
+  Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.author');
+  Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.author');
+  Route::put('/artikel/{article}', [ArtikelController::class, 'update'])->name('artikel.update.author');
+  Route::put('/artikel/{article}/toggle-publish', [ArtikelController::class, 'togglePublish'])->name('artikel.toggle-publish.author');
+  Route::delete('/artikel/{article}', [ArtikelController::class, 'destroy'])->name('artikel.destroy.author');
 });
