@@ -27,8 +27,8 @@ class LoginController extends Controller
         $request->session()->regenerate();
         if ($request->user()->role=='admin'){
             return redirect()->route('beranda.index.admin');
-        }else{
-            return redirect()->route('author.index');
+        } else {
+            return redirect()->route('artikel.index.author');
         }
     }
 

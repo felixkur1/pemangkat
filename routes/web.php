@@ -26,7 +26,7 @@ Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel
 
 Route::middleware("guest")->group(function () {
   Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+  Route::post('/login', [LoginController::class, 'login']);
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware("auth");
@@ -77,8 +77,8 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::prefix('/author')->middleware(['auth','author'])->group(function () {
-  Route::view('/',"author.index")->name('author.index');
-  Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.author');
+  //Route::view('/',"author.index")->name('author.index');
+  Route::get('/', [ArtikelController::class, 'index_admin'])->name('artikel.index.author');
   Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.author');
   Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.author');
   Route::put('/artikel/{article}', [ArtikelController::class, 'update'])->name('artikel.update.author');
