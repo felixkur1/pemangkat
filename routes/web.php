@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\AuthorArtikelController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DokumenPublikController;
 use App\Http\Controllers\PegawaiController;
