@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\AuthorArtikelController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DokumenPublikController;
 use App\Http\Controllers\PegawaiController;
@@ -70,11 +71,7 @@ Route::prefix('/admin')->group(function () {
 });
 
 Route::prefix('/author')->group(function () {
-  Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.author');
-  Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.author');
-  Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.author');
-  Route::put('/artikel/{article}', [ArtikelController::class, 'update'])->name('artikel.update.author');
-  Route::put('/artikel/{article}/toggle-publish', [ArtikelController::class, 'togglePublish'])->name('artikel.toggle-publish.author');
-  Route::delete('/artikel/{article}', [ArtikelController::class, 'destroy'])->name('artikel.destroy.author');
+  Route::get('/', [AuthorArtikelController::class, 'index']);
+  
   
 });
