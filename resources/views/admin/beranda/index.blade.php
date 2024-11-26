@@ -32,7 +32,7 @@
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
           ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
+          ['insert', ['link', 'video']],
           ['view', ['codeview', 'help']]
         ]
         });
@@ -48,7 +48,7 @@
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
           ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
+          ['insert', ['link', 'video']],
           ['view', ['codeview', 'help']]
         ]
         });

@@ -6,7 +6,7 @@
       </h1>
       <div class="list-decimal ml-5 flex flex-col gap-4">
         <blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white md:text-left">
-          {{ '"'.$vision->value.'"' }}
+          {{ $vision->value ?? " " }}
         </blockquote>
       </div>
     </div>

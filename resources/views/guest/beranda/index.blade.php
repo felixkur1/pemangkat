@@ -1,5 +1,30 @@
 <x-layout.guest>
   <main class="w-full flex flex-col items-center">
+    <x-highlight :items="$articles"/>
+    <div class="w-full md:w-2/3 pb-4 bg-gradient-to-r from-red-800 to-red-600 text-white mt-4 rounded-xl">
+      <h1 class="text-3xl font-semibold p-4">Selamat Datang</h1>
+      <div class="px-4">
+        <div class="md:w-2/3 w-full float-left flex items-center flex-col mb-4">
+          <iframe class="w-full float-left md:pr-4 aspect-video" src="https://www.youtube.com/embed/A6cSbof7Pik?si=DeNCVjcvxo8qHfSR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <p class="text-sm"><i>Video Profil Pemangkat</i></p>
+        </div>
+        <p class="leading-relaxed">
+          {!! $greetings->content ?? "" !!}
+        </p>
+      </div>
+    </div>
+
+    {{-- Portal Web Desa --}}
+    <div class="w-full md:w-2/3 p-4 bg-gradient-to-r from-lime-600 to-lime-700 text-white mt-4 rounded-xl">
+      <x-nav.portal />
+    </div>
+
+    <div class="w-full md:w-2/3 p-4 bg-gradient-to-r from-teal-700 to-teal-600 text-white mt-4 rounded-xl">
+      <h1 class="text-3xl font-semibold w-full text-right">Sejarah</h1>
+    </div>
+
+
+
     <div class="md:w-2/3 w-full flex flex-col items-center gap-4">
       <div class="text-3xl font-semibold italic">
         Kata Sambutan
@@ -7,7 +32,7 @@
       <div class="bootstrap-styled">
         {!! $greetings->content ?? "" !!}
       </div>
-      <x-highlight :items="$articles"/>
+      
       <div class="text-3xl font-semibold italic">
         Sekapur Sirih
       </div>
