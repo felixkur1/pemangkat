@@ -3,6 +3,10 @@
     <div class="text-3xl font-semibold mb-4">
       Lokasi Penting
     </div>
+
+    <div class="w-full">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127648.1531101328!2d108.88992851381548!3d1.1570623036736387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31e48297b82d626d%3A0x88e7f64d4723b4d5!2sKec.%20Pemangkat%2C%20Kabupaten%20Sambas%2C%20Kalimantan%20Barat!5e0!3m2!1sid!2sid!4v1732597556810!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
     
     <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center bg-gray-100 w-full">
       {{-- Items --}}

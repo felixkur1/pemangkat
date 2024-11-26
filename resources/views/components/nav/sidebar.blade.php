@@ -53,8 +53,8 @@ $currentRoute = request()->url();
                <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
             </svg>
          </button>
-        <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-          <img src="{{ asset('lambang-kabupaten-sambas.jpg') }}" class="h-8 me-3" alt="FlowBite Logo" />
+        <a href="/" class="flex ms-2 md:me-24">
+          <img src="{{ asset('lambang-kabupaten-sambas.jpg') }}" class="h-8 me-3" alt="Logo Sambas" />
           <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Kecamatan Pemangkat</span>
         </a>
       </div>
@@ -69,10 +69,10 @@ $currentRoute = request()->url();
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
               <div class="px-4 py-3" role="none">
                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                  Andrea Sitohang
+                  {{ request()->user()->name }}
                 </p>
                 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                  Username
+                  {{ request()->user()->username }}
                 </p>
               </div>
               <ul class="py-1" role="none">
