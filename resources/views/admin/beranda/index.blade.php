@@ -15,8 +15,8 @@
       </div>
       <label class="block text-sm font-medium text-gray-900 dark:text-white" for="summernote-1">Sekapur Sirih</label>
       <div class="bootstrap-styled">
-        <textarea id="summernote-2" class="bg-white w-full z-50" name="sekapur-sirih">
-          {{ $messages->content ?? "" }}
+        <textarea id="summernote-2" class="bg-white w-full z-50" name="sejarah">
+          {{ $history->content ?? "" }}
         </textarea>
       </div>
       <script>

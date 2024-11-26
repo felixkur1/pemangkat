@@ -14,10 +14,10 @@ class BerandaController extends Controller
     public function index_guest()
     {
         $greetings = HomepageContent::query()->where('name', '=', 'sambutan')->first();
-        $messages  = HomepageContent::query()->where('name', '=', 'sekapur-sirih')->first();
+        $history  = HomepageContent::query()->where('name', '=', 'sejarah')->first();
         $articles = Article::query()->where('published_at', '!=', null)->where('highlighted', '=', true)->limit(5)->get();
 
-        return view('guest.beranda.index', compact('greetings', 'messages', 'articles'));
+        return view('guest.beranda.index', compact('greetings', 'history', 'articles'));
     }
 
     /**
@@ -26,9 +26,9 @@ class BerandaController extends Controller
     public function index_admin()
     {
         $greetings = HomepageContent::query()->where('name', '=', 'sambutan')->first();
-        $messages  = HomepageContent::query()->where('name', '=', 'sekapur-sirih')->first();
+        $history  = HomepageContent::query()->where('name', '=', 'sejarah')->first();
 
-        return view('admin.beranda.index', compact('greetings', 'messages'));
+        return view('admin.beranda.index', compact('greetings', 'history'));
     }
 
     /**
@@ -38,7 +38,7 @@ class BerandaController extends Controller
     {
         $request->validate([
             'sambutan' => 'required',
-            'sekapur-sirih' => 'required',
+            'sejarah' => 'required',
         ]);
 
         $greetings = HomepageContent::query()->where('name', '=', 'sambutan')->first();
@@ -54,17 +54,17 @@ class BerandaController extends Controller
             $greetings->save();
         }
 
-        $messages = HomepageContent::query()->where('name', '=', 'sekapur-sirih')->first();
-        if ($messages == null) {
-            $messages = HomepageContent::create([
+        $history = HomepageContent::query()->where('name', '=', 'sejarah')->first();
+        if ($history == null) {
+            $history = HomepageContent::create([
                 'id' => 1,
-                'name' => 'sekapur-sirih',
-                'content' => $request->input('sekapur-sirih'),
+                'name' => 'sejarah',
+                'content' => $request->input('sejarah'),
             ])->save();
         } else {
-            $messages->name = 'sekapur-sirih';
-            $messages->content = $request->input('sekapur-sirih');
-            $messages->save();
+            $history->name = 'sejarah';
+            $history->content = $request->input('sejarah');
+            $history->save();
         }
 
         return redirect()->back()->with([

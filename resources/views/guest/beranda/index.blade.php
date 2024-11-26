@@ -8,7 +8,7 @@
           <iframe class="w-full float-left md:pr-4 aspect-video" src="https://www.youtube.com/embed/A6cSbof7Pik?si=DeNCVjcvxo8qHfSR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <p class="text-sm"><i>Video Profil Pemangkat</i></p>
         </div>
-        <p class="leading-relaxed">
+        <p class="leading-relaxed bootstrap-styled">
           {!! $greetings->content ?? "" !!}
         </p>
       </div>
@@ -19,25 +19,16 @@
       <x-nav.portal />
     </div>
 
-    <div class="w-full md:w-2/3 p-4 bg-gradient-to-r from-teal-700 to-teal-600 text-white mt-4 rounded-xl">
-      <h1 class="text-3xl font-semibold w-full text-right">Sejarah</h1>
-    </div>
-
-
-
-    <div class="md:w-2/3 w-full flex flex-col items-center gap-4">
-      <div class="text-3xl font-semibold italic">
-        Kata Sambutan
-      </div>
-      <div class="bootstrap-styled">
-        {!! $greetings->content ?? "" !!}
-      </div>
-      
-      <div class="text-3xl font-semibold italic">
-        Sekapur Sirih
-      </div>
-      <div class="bootstrap-styled w-full">
-        {!! $messages->content ?? "" !!}
+    <div class="w-full md:w-2/3 pb-4 bg-gradient-to-r from-teal-700 to-teal-600 text-white mt-4 rounded-xl">
+      <h1 class="text-3xl font-semibold w-full text-right p-4">Sejarah</h1>
+      <div class="px-4">
+        <div class="md:w-2/3 w-full float-right flex items-center flex-col mb-4">
+          <iframe class="w-full float-left md:pr-4 aspect-video" src="https://www.youtube.com/embed/A6cSbof7Pik?si=DeNCVjcvxo8qHfSR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <p class="text-sm"><i>Video Profil Pemangkat</i></p>
+        </div>
+        <p class="leading-relaxed bootstrap-styled">
+          {!! $history->content ?? "" !!}
+        </p>
       </div>
     </div>
 
