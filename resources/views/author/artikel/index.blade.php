@@ -21,8 +21,8 @@
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
-          <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-            <img src="{{ asset('lambang-kabupaten-sambas.jpg') }}" class="h-8 me-3" alt="FlowBite Logo" />
+          <a href="/" class="flex ms-2 md:me-24">
+            <img src="{{ asset('lambang-kabupaten-sambas.jpg') }}" class="h-8 me-3" alt="Logo Sambas" />
             <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Kecamatan Pemangkat</span>
           </a>
         </div>
@@ -37,19 +37,20 @@
               <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                 <div class="px-4 py-3" role="none">
                   <p class="text-sm text-gray-900 dark:text-white" role="none">
-                    Andrea Sitohang
+                    {{ request()->user()->name }}
                   </p>
                   <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                    Username
+                    {{ request()->user()->username }}
                   </p>
                 </div>
                 <ul class="py-1" role="none">
                   <li>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Profil</a>
                   </li>
-                  <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
-                  </li>
+                  <form action="/logout" method="POST">
+                    @csrf
+                    <button type='submit' class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign Out</button>
+                  </form>
                 </ul>
               </div>
             </div>
@@ -68,7 +69,7 @@
 
       {{-- Insert Form --}}
       <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm">
-        <form action="{{ route('artikel.store.admin') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-2">
+        <form action="{{ route('artikel.store.author') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-2">
           @csrf
           <h2 class="text-xl font-semibold">Tambah Artikel</h2>
           <div class="flex flex-col md:flex-row gap-4 w-full">
@@ -100,7 +101,7 @@
 
       {{-- Search, Sort, dan Filter --}}
     <section class="flex flex-row p-4 md:flex-row gap-2 bg-white rounded-lg shadow-sm">
-      <form action="{{ route('artikel.index.admin') }}" method="GET" class="flex flex-col gap-2 bg-white rounded-lg w-full">
+      <form action="{{ route('artikel.index.author') }}" method="GET" class="flex flex-col gap-2 bg-white rounded-lg w-full">
         <div class="flex flex-col md:flex-row gap-4">
           <x-form.search name="title" placeholder="Cari berdasarkan judul..." value="{{ request()->input('title') }}"/>
           <div class="flex gap-4 flex-col">
@@ -139,25 +140,18 @@
                   {{ $a->description }}
                 </p>
               </div>
-              <div class="flex flex-row gap-2 justify-end">
-                <form action="{{ route('artikel.toggle-highlight.admin', $a->id) }}" method="POST">
-                  @csrf
-                  @method('PUT')
-                  <x-form.button type="submit">
-                    {{ $a->highlighted ? 'Batalkan Highlight' : 'Highlight' }}
-                  </x-form.button>  
-                </form>
-                <form action="{{ route('artikel.toggle-publish.admin', $a->id) }}" method="POST">
+              <div class="flex flex-row gap-2 justify-end mt-4">
+                <form action="{{ route('artikel.toggle-publish.author', $a->id) }}" method="POST">
                   @csrf
                   @method('PUT')
                   <x-form.button type="submit">
                     {{ isset($a->published_at) ? 'Batalkan Publikasi' : 'Publikasi' }}
                   </x-form.button>  
                 </form>
-                <x-form.button onclick="window.location = '{{ route('artikel.edit.admin', $a->id) }}'">
+                <x-form.button onclick="window.location = '{{ route('artikel.edit.author', $a->id) }}'">
                   Edit
                 </x-form.button>
-                <x-form.button use="destroy" onclick="openModal('{{ route('artikel.destroy.admin', $a->id) }}', 'delete')" data-modal-target="modal" data-modal-toggle="modal">
+                <x-form.button use="destroy" onclick="openModal('{{ route('artikel.destroy.author', $a->id) }}', 'delete')" data-modal-target="modal" data-modal-toggle="modal">
                   Hapus
                 </x-form.button>
               </div>
@@ -171,9 +165,9 @@
         {{ $artikel->appends(request()->query())->links('pagination::flowbite') }}
       </div>
     </section>
-
-
     </main>
-    
   </div>
+  @if(session('message'))
+    <x-toast :message="session('message')" :type="session('type', 'success')" />
+  @endif
 </x-layout.base>

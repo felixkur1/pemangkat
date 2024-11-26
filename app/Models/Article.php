@@ -16,5 +16,10 @@ class Article extends Model
         'content',
         'published_at',
         'highlighted',
+        'user_id'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

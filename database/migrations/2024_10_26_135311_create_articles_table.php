@@ -23,8 +23,9 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
             $table->boolean('highlighted')->default(false);
             
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
-            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

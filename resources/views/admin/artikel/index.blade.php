@@ -87,6 +87,7 @@
             <div class="w-full p-5 flex-1 flex flex-col justify-between">
               <div class="w-full">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $a->title }}</h5>
+                <p class="font-sm text-gray-500">{{ $a->user->name }}</p>
                 <p class="font-sm text-gray-500">{{ Str::ucfirst($a->type) }}</p>
                 <p class="font-sm text-gray-500">Dipublikasikan Pada: 
                   <span>{{ \Carbon\Carbon::parse($a->published_at)->translatedFormat("l, j F Y") ?? "Belum Dipublikasikan" }}</span>
@@ -95,7 +96,7 @@
                   {{ $a->description }}
                 </p>
               </div>
-              <div class="flex flex-row gap-2 justify-end">
+              <div class="flex flex-row gap-2 justify-end mt-4">
                 <form action="{{ route('artikel.toggle-highlight.admin', $a->id) }}" method="POST">
                   @csrf
                   @method('PUT')

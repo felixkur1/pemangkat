@@ -31,7 +31,6 @@ Route::middleware("guest")->group(function () {
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware("auth");
 
-
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   Route::view('/', 'admin.index')->name('admin.dashboard');
   
@@ -78,9 +77,9 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
 
 Route::prefix('/author')->middleware(['auth','author'])->group(function () {
   //Route::view('/',"author.index")->name('author.index');
-  Route::get('/', [ArtikelController::class, 'index_admin'])->name('artikel.index.author');
+  Route::get('/', [ArtikelController::class, 'index_author'])->name('artikel.index.author');
   Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.author');
-  Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.author');
+  Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit_author'])->name('artikel.edit.author');
   Route::put('/artikel/{article}', [ArtikelController::class, 'update'])->name('artikel.update.author');
   Route::put('/artikel/{article}/toggle-publish', [ArtikelController::class, 'togglePublish'])->name('artikel.toggle-publish.author');
   Route::delete('/artikel/{article}', [ArtikelController::class, 'destroy'])->name('artikel.destroy.author');
