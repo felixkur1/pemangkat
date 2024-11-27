@@ -53,22 +53,17 @@ class PegawaiController extends Controller
             'image' => 'nullable|image|mimes:png,jpg,jpeg|max:1024',
         ]);
 
-        // Update the employee's name
         $employee->full_name = $request->input('full_name');
 
-        // Check if an image file is uploaded
         if ($request->hasFile('image')) {
-            // Delete the old image if it exists
             if ($employee->image_url) {
                 Storage::delete($employee->image_url);
             }
 
-            // Store the new image and update the image_url field
             $imageUrl = $request->file('image')->store('images/employees', 'public');
             $employee->image_url = $imageUrl;
         }
 
-        // Save the updated employee data
         $employee->save();
 
         return redirect()->back()->with([
