@@ -33,8 +33,8 @@ $currentRoute = request()->url();
 <nav class="bg-gradient-to-r from-amber-600 to-amber-500  fixed w-full z-50 top-0 start-0 border-b border-gray-200 text-white">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <a href="{{ route('beranda.index.guest') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="{{ asset('lambang-kabupaten-sambas.jpg') }}" class="h-8" alt="Logo Kabupaten Sambas">
-      <span class="self-center text-2xl font-semibold whitespace-nowrap text-slate-800">Kecamatan Pemangkat</span>
+      <img src="{{ asset('lambang-kabupaten-sambas.png') }}" class="h-8" alt="Logo Kabupaten Sambas">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Kecamatan Pemangkat</span>
   </a>
   
   <!-- Hamburger Button -->
