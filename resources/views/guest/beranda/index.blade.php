@@ -290,43 +290,31 @@
 
     </div>
 
-    <div class="text-3xl font-semibold mb-4">
-      Statistik Kecamatan Pemangkat
-    </div>
-    <div>
-      <div id="myplot"></div>
-      <script type="module">
-
-        import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
-
-        const plot = Plot.rectY({length: 100}, Plot.binX({y: "count"}, {x: Math.random})).plot();
-        const div = document.querySelector("#myplot");
-        div.append(plot);
-
-      </script>
-    </div>
-    <div class="text-3xl font-semibold mb-4">
-      Kumpulan Berita
+    {{-- Kumpulan Artikel --}}
+    <div class="w-full pb-4 text-slate-700 mt-4 rounded-xl border-2">
+      <h1 class="text-3xl font-semibold w-full text-center p-4">Kumpulan Berita</h1>
+      <div>
+        <x-article-slider 
+          type="newest"
+          slider-title="Berita Terkini"
+          slider-description="Dapatkan Update Terbaru dari Sumber Terpercaya"
+          slider-url="{{ route('artikel.index.guest') }}"
+        />
+        <hr class="h-1 my-8 bg-gray-200 border-0 dark:bg-gray-700 w-full">
+        <x-article-slider 
+          type="important"
+          slider-title="Informasi Penting"
+          slider-description="Pengumuman dan Informasi Penting yang Harus Anda Ketahui"
+          slider-url="{{ route('artikel.index.guest') }}"
+        />
+        <hr class="h-1 my-8 bg-gray-200 border-0 dark:bg-gray-700 w-full">
+        <x-article-slider 
+          type="popular"
+          slider-title="Paling Sering Dilihat"
+          slider-description="Berita Populer yang Sedang Hangat Dibicarakan"
+          slider-url="{{ route('artikel.index.guest') }}"
+        />
+      </div>
     </div>
   </main>
-  <x-article-slider 
-    type="newest"
-    slider-title="Berita Terkini"
-    slider-description="Dapatkan Update Terbaru dari Sumber Terpercaya"
-    slider-url="{{ route('artikel.index.guest') }}"
-  />
-  <hr class="h-1 my-8 bg-gray-200 border-0 dark:bg-gray-700 w-full">
-  <x-article-slider 
-    type="important"
-    slider-title="Informasi Penting"
-    slider-description="Pengumuman dan Informasi Penting yang Harus Anda Ketahui"
-    slider-url="{{ route('artikel.index.guest') }}"
-  />
-  <hr class="h-1 my-8 bg-gray-200 border-0 dark:bg-gray-700 w-full">
-  <x-article-slider 
-    type="popular"
-    slider-title="Paling Sering Dilihat"
-    slider-description="Berita Populer yang Sedang Hangat Dibicarakan"
-    slider-url="{{ route('artikel.index.guest') }}"
-  />
 </x-layout.guest>

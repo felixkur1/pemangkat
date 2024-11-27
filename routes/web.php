@@ -37,7 +37,6 @@ Route::middleware("guest")->group(function () {
 Route::post('/logout', [LoginController::class, 'logout'])->middleware("auth");
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
-  Route::view('/', 'admin.index')->name('admin.dashboard');
   
   Route::get('/beranda', [BerandaController::class, 'index_admin'])->name('beranda.index.admin');
   Route::put('/beranda', [BerandaController::class, 'update'])->name('admin.beranda.update');
