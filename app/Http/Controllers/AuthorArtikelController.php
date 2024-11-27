@@ -42,7 +42,7 @@ class AuthorArtikelController extends Controller
 
         $artikel = $query->paginate(10);
 
-        return view('author.index', compact('artikel'));
+        return view('author.artikel.index', compact('artikel'));
     }
 
     /**
