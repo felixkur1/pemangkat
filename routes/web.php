@@ -10,6 +10,7 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LokasiPentingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index_guest'])->name('beranda.index.guest');
@@ -26,8 +27,8 @@ Route::view('/lokasi-penting', 'guest.lokasi-penting.index')->name('lokasi-penti
 Route::get('/artikel', [ArtikelController::class, 'index_guest'])->name('artikel.index.guest');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show.guest');
 
-Route::get('/profile' , [ProfileController::class, 'index'])->name('profile.index');
-Route::put('/profile/{user}' , [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::middleware("guest")->group(function () {
   Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -66,6 +67,11 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   Route::put('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'update'])->name('dokumen-publik.update.admin');
   Route::delete('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'destroy'])->name('dokumen-publik.destroy.admin');
 
+  Route::get('/lokasi-penting', [LokasiPentingController::class, 'index_admin'])->name('lokasi-penting.index.admin');
+  Route::post('/lokasi-penting', [LokasiPentingController::class, 'store'])->name('lokasi-penting.store.admin');
+  Route::put('/lokasi-penting/{lokasi}', [LokasiPentingController::class, 'update'])->name('lokasi-penting.update.admin');
+  Route::delete('/lokasi-penting/{lokasi}', [LokasiPentingController::class, 'destroy'])->name('lokasi-penting.destroy.admin');
+  
   Route::get('/artikel', [ArtikelController::class, 'index_admin'])->name('artikel.index.admin');
   Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.admin');
   Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit.admin');
@@ -79,6 +85,7 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   Route::post('/author-setting', [UserController::class, 'store_author'])->name('author-setting.store.admin');
   Route::put('/author-setting/{user}', [UserController::class, 'update_author'])->name('author-setting.update.admin');
   Route::delete('/author-setting/{user}', [UserController::class, 'destroy_author'])->name('author-setting.destroy.admin');
+
 });
 
 Route::prefix('/author')->middleware(['auth','author'])->group(function () {

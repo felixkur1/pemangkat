@@ -41,5 +41,7 @@
         </x-form.button>
       </form>
     </section>
-  </main>
+    @if(session('message'))
+    <x-toast :message="session('message')" :type="session('type', 'success')" />
+  @endif
 </x-layout.base>
