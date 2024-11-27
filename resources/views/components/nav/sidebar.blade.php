@@ -30,6 +30,11 @@
     'url' => route('dokumen-publik.index.admin'),
   ],
   [
+    'name' => 'Lokasi Penting',
+    'type' => 'link',
+    'url' => route('lokasi-penting.index.admin'),
+  ],
+  [
     'name' => 'Artikel',
     'type' => 'link',
     'url' => route('artikel.index.admin'),
