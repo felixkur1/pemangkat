@@ -13,9 +13,24 @@ class LokasiPentingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index_guest(Request $request)
     {
-        //
+        $query = LokasiPenting::query();
+
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%'.strtolower($request->input('title')).'%');
+        }
+
+        $sort = $request->input('sort', 'newest');
+        if ($sort == 'newest') {
+            $query->orderBy('updated_at', 'desc');
+        } else {
+            $query->orderBy('updated_at', 'asc');
+        }
+
+        $lokasi_penting = $query->paginate(10);
+
+        return view('guest.lokasi-penting.index', compact('lokasi_penting'));
     }
 
     public function index_admin(Request $request) {

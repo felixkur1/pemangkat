@@ -22,7 +22,7 @@ Route::get('/struktur-organisasi', [StrukturOrganisasiController::class, 'index_
 Route::get('/dokumen-publik', [DokumenPublikController::class, 'index_guest'])->name('dokumen-publik.index.guest');
 Route::get('/dokumen-publik/{publicDocument}', [DokumenPublikController::class, 'download'])->name('dokumen-publik.download');
 
-Route::view('/lokasi-penting', 'guest.lokasi-penting.index')->name('lokasi-penting.index.guest');
+Route::get('/lokasi-penting', [LokasiPentingController::class, 'index_guest'])->name('lokasi-penting.index.guest');
 
 Route::get('/artikel', [ArtikelController::class, 'index_guest'])->name('artikel.index.guest');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show.guest');

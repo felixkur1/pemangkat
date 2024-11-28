@@ -238,10 +238,16 @@
                           'Aparatur/Pejabat Negara', 
                           'Tenaga Pengajar', 
                           'Wiraswasta', 
-                          'Pertanian/Peternakan'
+                          'Pertanian/Peternakan',
+                          'Nelayan',
+                          'Agama dan Kepercayaan',
+                          'Pelajar/Mahasiswa',
+                          'Tenaga Kesehatan',
+                          'Pensiunan',
+                          'Lainnya',
                       ],
                       datasets: [{
-                          data: [1200, 150, 250, 300, 400],
+                          data: [9772, 1003, 50, 13848, 3191, 1342, 22, 11973, 26, 329, 11013],
                           backgroundColor: [
                               'rgba(255, 99, 132, 0.8)',   // Merah
                               'rgba(54, 162, 235, 0.8)',   // Biru

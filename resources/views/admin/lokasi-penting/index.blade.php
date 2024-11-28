@@ -16,22 +16,25 @@
         @csrf
         <h2 class="text-xl font-semibold">Tambah Lokasi Baru</h2>
         {{-- Form Items --}}
-        <div class="flex flex-col md:flex-row gap-4 w-full">
-          <div class="flex flex-col gap-2 flex-1">            
-            <label class="block text-sm font-medium text-gray-900 dark:text-white" for="image">Foto Lokasi</label>
-            <input name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">
-          </div>
-          <div class="flex flex-col gap-4 flex-1">
-            <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-4 w-full">
+          <div class="flex flex-col md:flex-row gap-2 justify-center">
+            <div class="flex flex-col gap-2 flex-1">
+              <label class="block text-sm font-medium text-gray-900 dark:text-white" for="image">Foto Lokasi</label>
+              <input name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">
+            </div>
+            <div class="flex flex-col gap-2 flex-1">
               <label class="block text-sm font-medium text-gray-900 dark:text-white" for="location_name">Nama Lokasi</label>
               <x-form.input type="text" name="location_name" id="location_name"/>
             </div>
+          </div>
+          <div class="flex flex-col gap-4 flex-1">
             <div class="flex flex-col gap-2">
-              <label class="block text-sm font-medium text-gray-900 dark:text-white" for="description">Description</label>
-              <x-form.input type="text" name="description" id="description"/>
+              <label class="block text-sm font-medium text-gray-900 dark:text-white" for="description">Deskripsi</label>
+              <x-form.textarea name="description" id="description" rows="5" placeholder="Deskripsi Lokasi...">
+              </x-form.textarea>
             </div>
             <div class="flex flex-col gap-2">
-              <label class="block text-sm font-medium text-gray-900 dark:text-white" for="link_gmaps">link Gmaps</label>
+              <label class="block text-sm font-medium text-gray-900 dark:text-white" for="link_gmaps">Link Google Maps</label>
               <x-form.input type="text" name="link_gmaps" id="link_gmaps"/>
             </div>
             <x-form.button type="submit">
@@ -71,18 +74,14 @@
               {{ $l->description }}
             </p>
             <p class="font-normal text-blue-500 underline">
-              <a href="{{ $l->link_gmaps }}">{{ $l->location_name }}</a>
+              <a href="{{ $l->link_gmaps }}" target="_blank">{{ $l->location_name }}</a>
             </p>
             <p class="font-sm text-gray-500">Diperbaharui pada: 
               <span>{{ \Carbon\Carbon::parse($l->updated_at)->translatedFormat("l, j F Y")}}</span>
             </p>
           </div>
           <div class="flex flex-row gap-2 justify-end mt-4">
-
-            {{-- <x-form.button onclick="window.location = '{{ route('lokasi-penting.update.admin', $l->id) }}','edit', {location_name: '{{ $l->location_name }}', image_url: '{{ asset('storage/'.$l->image_url) }}', description: '{{ $l->description }}', link_gmaps: '{{ $l->link_gmaps }}' }" data-modal-target="modal" data-modal-toggle="modal">
-              Edit
-            </x-form.button> --}}
-            <x-form.button onclick="openModal('{{ route('pegawai.update.admin', $l->id) }}', 'edit', {location_name: '{{ $l->location_name }}', image_url: '{{ asset('storage/'.$l->image_url) }}', description: '{{ $l->description }}', link_gmaps: '{{ $l->link_gmaps }}' })" data-modal-target="modal" data-modal-toggle="modal">
+            <x-form.button onclick="openModal('{{ route('lokasi-penting.update.admin', $l->id) }}', 'edit', {location_name: '{{ $l->location_name }}', image_url: '{{ asset('storage/'.$l->image_url) }}', description: '{{ $l->description }}', link_gmaps: '{{ $l->link_gmaps }}' })" data-modal-target="modal" data-modal-toggle="modal">
               Edit
             </x-form.button>
             <x-form.button use="destroy" onclick="openModal('{{ route('lokasi-penting.destroy.admin', $l->id) }}', 'delete')" data-modal-target="modal" data-modal-toggle="modal">
@@ -103,23 +102,31 @@
 
   <x-modal>    
     <div id="modal-edit" class="hidden">
-      <h2 class="text-xl font-semibold mb-4">Edit Pegawai</h2>
-      <div class="flex flex-row gap-4">
-        <div class="w-1/2 aspect-[3/4] overflow-hidden">
+      <h2 class="text-xl font-semibold mb-4">Edit Lokasi Penting</h2>
+      <div class="flex flex-col gap-2">
+        <div class="w-2/3 aspect-video overflow-hidden self-center">
           <img id="modal-edit-image" class="object-cover w-full h-full rounded-lg" alt=""/>
         </div>
         <div class="w-full flex flex-col items-start">
           <form action="" method="POST" class="flex flex-col items-start w-full gap-4" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <label class="block text-sm font-medium text-gray-900 dark:text-white" for="location_name">Ubah Nama Lokasi</label>
-            <x-form.input type="text" name="location_name" id="location_name"/>
+            <div class="flex flex-row gap-2">
+              <div class="flex flex-col items-start gap-2">
+                <label class="block text-sm font-medium text-gray-900 dark:text-white" for="image">Foto Lokasi</label>
+                <input name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">
+              </div>
+              <div class="w-2/3 flex flex-col items-start gap-2">
+                <label class="block text-sm font-medium text-gray-900 dark:text-white" for="location_name">Ubah Nama Lokasi</label>
+                <x-form.input type="text" name="location_name" id="location_name"/>
+              </div>
+            </div>
             <label class="block text-sm font-medium text-gray-900 dark:text-white" for="description">Ubah Deskripsi</label>
-            <x-form.input type="text" name="description" id="description"/>
+            <x-form.textarea name="description" id="description" rows="2" placeholder="Deskripsi Lokasi...">
+            </x-form.textarea>
             <label class="block text-sm font-medium text-gray-900 dark:text-white" for="link_gmaps">Ubah Link Gmaps</label>
             <x-form.input type="text" name="link_gmaps" id="link_gmaps"/>
-            <label class="block text-sm font-medium text-gray-900 dark:text-white" for="image">Foto Lokasi</label>
-            <input name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">
+            
             <x-form.button type="submit">
               Edit
             </x-form.button>
