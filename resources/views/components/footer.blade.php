@@ -69,7 +69,7 @@ $webDesa = [
 
 @endphp
 
-<footer class="bg-slate-800">
+<footer class="bg-slate-800 mt-8">
   <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
     <div class="md:flex md:justify-between">
 
@@ -84,7 +84,7 @@ $webDesa = [
         <iframe class="rounded-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.978170143096!2d108.97358549999998!3d1.1758371000000027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31e482e781e5b397%3A0xf4b3656562d567e4!2sKantor%20Camat%20Pemangkat!5e0!3m2!1sid!2sid!4v1732758727831!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
-      <div class="grid grid-cols-2 gap-12 sm:gap-6 sm:grid-cols-3">
+      <div class="grid grid-cols-2 gap-12 sm:gap-8 sm:grid-cols-3 md:w-1/2">
         <div>
           <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Situs Desa</h2>
           <ul class="text-slate-400 dark:text-gray-400 font-medium flex flex-col gap-4">

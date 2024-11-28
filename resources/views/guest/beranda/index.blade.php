@@ -27,8 +27,9 @@
       <h1 class="text-3xl font-semibold w-full text-left p-4">Sejarah</h1>
       <div class="px-4">
         <div class="md:w-2/3 w-full float-right flex items-center flex-col mb-4">
-          <iframe class="w-full float-left md:pr-4 aspect-video" src="https://www.youtube.com/embed/A6cSbof7Pik?si=DeNCVjcvxo8qHfSR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <p class="text-sm"><i>Video Profil Pemangkat</i></p>
+          <img class="w-full float-left md:pr-4 aspect-video" src="{{ asset('gunung-gajah.jpg') }}" alt="">
+          {{-- <iframe class="w-full float-left md:pr-4 aspect-video" src="https://www.youtube.com/embed/A6cSbof7Pik?si=DeNCVjcvxo8qHfSR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> --}}
+          <p class="text-sm"><i>Gunung Gajah</i></p>
         </div>
         <p class="leading-relaxed bootstrap-styled">
           {!! $history->content ?? "" !!}
@@ -289,11 +290,8 @@
                   new Chart(ctx, config);
               });
           </script>
-        </div>
-
-        
+        </div>    
       </main>
-
     </div>
 
     {{-- Kumpulan Artikel --}}
