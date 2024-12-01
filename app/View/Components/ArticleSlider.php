@@ -44,7 +44,7 @@ class ArticleSlider extends Component
         $this->articles = Article::query()
             ->whereNotNull('published_at')
             ->orderBy('published_at', 'desc')
-            ->limit(10)
+            ->limit(5)
             ->get();
     }
 
@@ -53,7 +53,7 @@ class ArticleSlider extends Component
             ->where('type', 'like', 'berita')
             ->whereNotNull('published_at')
             ->orderBy('views', 'desc')
-            ->limit(10)
+            ->limit(5)
             ->get();
     }
 
@@ -62,7 +62,7 @@ class ArticleSlider extends Component
             ->where('type', 'informasi')
             ->whereNotNull('published_at')
             ->orderBy('views', 'desc')
-            ->limit(10)
+            ->limit(5)
             ->get();
     }
 
