@@ -18,3 +18,21 @@
     list-style-type: disc;
   }
 }
+
+.bootstrap-styled img {
+  margin: 10px;
+}
+
+.bootstrap-styled img[style*="float: left"] {
+  margin-right: 15px;
+  margin-left: 0;
+}
+
+.bootstrap-styled img[style*="float: right"] {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+iframe {
+  max-width: 100%;
+}

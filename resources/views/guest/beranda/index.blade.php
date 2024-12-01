@@ -1,44 +1,52 @@
 <x-layout.guest>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <main class="w-full flex flex-col items-center">
-    <x-highlight :items="$articles"/>
+  <div class="relative h-screen w-full">
+    <img class="absolute inset-0 object-cover w-full h-full brightness-50" src="{{ asset('guest-background.jpg') }}" alt="">
 
-    {{-- Kata Sambutan --}}
-    <div class="w-full md:w-2/3 pb-4 bg-gradient-to-r from-red-800 to-red-600 text-white mt-4 rounded-xl">
-      <h1 class="text-3xl font-semibold p-4">Selamat Datang</h1>
-      <div class="px-4">
-        <div class="md:w-2/3 w-full float-left flex items-center flex-col mb-4">
-          <iframe class="w-full float-left md:pr-4 aspect-video" src="https://www.youtube.com/embed/A6cSbof7Pik?si=DeNCVjcvxo8qHfSR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <p class="text-sm"><i>Video Profil Pemangkat</i></p>
-        </div>
-        <p class="leading-relaxed bootstrap-styled">
-          {!! $greetings->content ?? "" !!}
-        </p>
+    <div class="absolute flex-col inset-0 flex items-center justify-center gap-4 z-10 text-center">
+      <p class="text-white text-4xl font-bold">Selamat Datang di Website Resmi</p>
+      <p class="text-white text-xl font-semibold">Desa Jelutung | Kecamatan Pemangkat</p>
+    </div>
+  </div>
+  
+  <main class="w-full flex flex-col items-center gap-4 mt-4">
+    <div class="w-full p-4 md:w-4/5 shadow-xl rounded-lg text-center">
+      <h1 class="text-3xl font-semibold p-4">Sorotan</h1>
+      <x-highlight :items="$articles"/>
+    </div>
+
+    {{-- Sedikit Tentang Desa Jelutung --}}
+    <div class="w-full p-4 md:w-4/5 shadow-xl rounded-lg bg-white">
+      <h1 class="text-3xl font-semibold p-4 text-center">Sedikit Tentang Desa Jelutung</h1>
+      <div class="bootstrap-styled">
+        {!! $greetings->content ?? "" !!}
       </div>
     </div>
 
-    {{-- Portal Web Desa --}}
-    <div class="w-full md:w-2/3 p-4 bg-gradient-to-r from-lime-600 to-lime-700 text-white mt-4 rounded-xl">
-      <x-nav.portal />
+    <div class="w-full p-4 md:w-4/5 shadow-xl rounded-lg bg-white">
+      <h1 class="text-3xl font-semibold p-4 text-center">Video Profil</h1>
+      <div class="bootstrap-styled">
+        {!! $profile_video->content ?? "" !!}
+      </div>
     </div>
 
     {{-- Sejarah --}}
-    <div class="w-full md:w-2/3 pb-4 bg-gradient-to-r from-teal-700 to-teal-600 text-white mt-4 rounded-xl">
-      <h1 class="text-3xl font-semibold w-full text-left p-4">Sejarah</h1>
-      <div class="px-4">
-        <div class="md:w-2/3 w-full float-right flex items-center flex-col mb-4">
-          <img class="w-full float-left md:pr-4 aspect-video" src="{{ asset('gunung-gajah.jpg') }}" alt="">
-          {{-- <iframe class="w-full float-left md:pr-4 aspect-video" src="https://www.youtube.com/embed/A6cSbof7Pik?si=DeNCVjcvxo8qHfSR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> --}}
-          <p class="text-sm"><i>Gunung Gajah</i></p>
-        </div>
-        <p class="leading-relaxed bootstrap-styled">
-          {!! $history->content ?? "" !!}
-        </p>
+    <div class="w-full p-4 md:w-4/5 shadow-xl rounded-lg bg-white">
+      <h1 class="text-3xl font-semibold w-full text-center p-4">Sejarah</h1>
+      
+      <div class="bootstrap-styled">
+        {!! $history->content ?? "" !!}
       </div>
+      
     </div>
 
     {{-- Statistik --}}
-    <div class="w-full pb-4 bg-gradient-to-l from-green-700 to-green-600 text-white mt-4 rounded-xl">
+    <div class="w-full p-4 md:w-4/5 shadow-xl rounded-lg bg-white">
+      <h1 class="text-3xl font-semibold w-full text-center p-4">Statistik</h1>
+      <x-statistics />
+    </div>
+
+    {{-- Statistik Lama --}}
+    {{-- <div class="w-full pb-4 bg-gradient-to-l from-green-700 to-green-600 text-white mt-4 rounded-xl">
       <h1 class="text-3xl font-semibold w-full text-center p-4">Statistik</h1>
       <main class="grid place-items-center place-content-center w-full justify-items-center gap-4 grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))] p-4">
         <div class="">
@@ -292,7 +300,7 @@
           </script>
         </div>    
       </main>
-    </div>
+    </div> --}}
 
     {{-- Kumpulan Artikel --}}
     <div class="w-full pb-4 text-slate-700 mt-4 rounded-xl border-2">

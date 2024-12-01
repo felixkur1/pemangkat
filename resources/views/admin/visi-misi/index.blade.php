@@ -8,8 +8,8 @@
       <form action="{{ route('visi-misi.update.visi.admin') }}" method="POST" class="flex flex-col gap-4">
         @csrf
         @method('PUT')
-        <label for="vision" class="text-xl font-semibold">Visi Organisasi</label>
-        <x-form.textarea name="vision" id="vision" rows="4" placeholder="Visi Kantor Kecamatan">
+        <label for="vision" class="text-xl font-semibold">Visi</label>
+        <x-form.textarea name="vision" id="vision" rows="4" placeholder="Visi...">
           {{ isset($vision->value) ? $vision->value : null }}
         </x-form.textarea>
         <x-form.button type="submit">

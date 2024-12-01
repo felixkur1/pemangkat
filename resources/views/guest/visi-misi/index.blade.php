@@ -1,25 +1,31 @@
 <x-layout.guest>
-  <main class="flex flex-col gap-4 items-start pl-4">
-    <div class="flex flex-col gap-4 lg:w-3/4">
-      <h1 class="text-3xl font-bold">
-        Visi
-      </h1>
-      <div class="list-decimal ml-5 flex flex-col gap-4">
-        <blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white md:text-left">
-          {{ $vision->value ?? " " }}
-        </blockquote>
-      </div>
+  <div class="relative h-[calc(100vh-12rem)] w-full">
+    <img class="absolute inset-0 object-cover w-full h-full brightness-50" src="{{ asset('guest-background.jpg') }}" alt="">
+    <div class="absolute flex-col inset-0 flex items-center justify-center gap-4 z-10 text-center">
+      <p class="text-white text-4xl font-bold">Visi dan Misi</p>
+      <p class="text-white text-xl font-semibold">Desa Jelutung</p>
     </div>
-    <hr class="h-1 my-8 bg-gray-200 border-0 dark:bg-gray-700 w-full">
-    <div class="flex flex-col gap-4 lg:w-3/4">
-      <h1 class="text-3xl font-bold">
-        Misi
-      </h1>
+  </div>
+
+  <main class="w-full flex flex-col items-center gap-4 mt-4">
+    <div class="w-full p-4 md:w-4/5 shadow-xl rounded-lg text-center">
+      <h1 class="text-3xl font-bold p-4">Visi</h1>
+      <blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white">
+        {{ $vision->value ?? " " }}
+      </blockquote>
+    </div>
+    
+    <div class="w-full p-4 md:w-4/5 shadow-xl rounded-lg text-center">
+      <h1 class="text-3xl font-bold p-4">Misi</h1>
       <ol class="list-decimal ml-5 flex flex-col gap-4">
         @foreach ($missions as $mission)
-          <li>{{ $mission->value }}</li>
+        
+          <li class="text-justify">{{ $mission->value }}</li>
         @endforeach
       </ol>
     </div>
+
+   
+   
   </main>
 </x-layout.guest>

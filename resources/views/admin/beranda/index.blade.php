@@ -13,9 +13,15 @@
           {{ $greetings->content ?? "" }}
         </textarea>
       </div>
+      <label class="block text-sm font-medium text-gray-900 dark:text-white" for="summernote-1">Video Profil</label>
+      <div class="bootstrap-styled">
+        <textarea id="summernote-2" class="bg-white w-full z-50" name="video-profil">
+          {{ $profile_video->content ?? "" }}
+        </textarea>
+      </div>
       <label class="block text-sm font-medium text-gray-900 dark:text-white" for="summernote-1">Sejarah</label>
       <div class="bootstrap-styled">
-        <textarea id="summernote-2" class="bg-white w-full z-50" name="sejarah">
+        <textarea id="summernote-3" class="bg-white w-full z-50" name="sejarah">
           {{ $history->content ?? "" }}
         </textarea>
       </div>
@@ -32,10 +38,11 @@
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
           ['table', ['table']],
-          ['insert', ['link', 'video']],
+          ['insert', ['link', 'picture', 'video']],
           ['view', ['codeview', 'help']]
         ]
         });
+
         $('#summernote-2').summernote({
           placeholder: 'Sekapur Sirih',
           height: 450,
@@ -48,7 +55,24 @@
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
           ['table', ['table']],
-          ['insert', ['link', 'video']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['codeview', 'help']]
+        ]
+        });
+
+        $('#summernote-3').summernote({
+          placeholder: 'Sekapur Sirih',
+          height: 450,
+          tabsize: 2,
+          toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'italic', 'underline', 'clear']],
+          ['fontname', ['fontname']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
           ['view', ['codeview', 'help']]
         ]
         });

@@ -1,6 +1,6 @@
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
   <!-- Carousel wrapper -->
-  <div class="relative h-72 overflow-hidden rounded-lg md:h-96">
+  <div class="relative h-72 overflow-hidden md:h-96">
   @foreach ($items as $article)
     <div class="hidden duration-1000 ease-in-out" data-carousel-item>
       <img src="{{ asset('storage/'.$article->thumbnail) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hover:scale-105 transition-all duration-300" alt="...">

@@ -1,7 +1,5 @@
-<x-layout.base title="{{ isset($title) ? $title : 'Kecamatan Pemangkat' }}">
+<x-layout.base title="{{ $title ?? env('APP_NAME') }}">
   <x-nav.navbar />
-  <main class="px-4 mt-20">
-    {{ $slot }}
-  </main>
+  {{ $slot }}
   <x-footer />
 </x-layout.base>
