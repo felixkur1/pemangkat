@@ -3,9 +3,12 @@
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
-          <a href="/" class="flex ms-2 md:me-24">
-            <img src="{{ asset('lambang-kabupaten-sambas.png') }}" class="h-8 me-3" alt="Logo Sambas" />
-            <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Kecamatan Pemangkat</span>
+          <a href="/" class="flex items-center ms-2 md:me-24">
+            <img src="{{ asset('lambang-kabupaten-sambas.png') }}" class="h-10 me-3" alt="Logo Sambas" />
+            <div class="flex flex-col">
+              <span class="text-base font-semibold whitespace-nowrap text-slate-900">Desa Jelutung</span>
+              <span class="text-sm font-semibold whitespace-nowrap text-slate-900">Kecamatan Pemangkat</span>
+            </div>
           </a>
         </div>
         <div class="flex items-center">

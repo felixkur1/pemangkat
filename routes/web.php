@@ -41,6 +41,11 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   
   Route::get('/beranda', [BerandaController::class, 'index_admin'])->name('beranda.index.admin');
   Route::put('/beranda', [BerandaController::class, 'update'])->name('admin.beranda.update');
+  Route::put('/beranda/statistik/demografi', [BerandaController::class, 'updateDemografi'])->name('admin.statistik.demografi.update');
+  Route::put('/beranda/statistik/pendidikan', [BerandaController::class, 'updatePendidikan'])->name('admin.statistik.pendidikan.update');
+  Route::put('/beranda/statistik/pekerjaan', [BerandaController::class, 'updatePekerjaan'])->name('admin.statistik.pekerjaan.update');
+  Route::put('/beranda/statistik/agama', [BerandaController::class, 'updateAgama'])->name('admin.statistik.agama.update');
+  Route::put('/beranda/statistik/suku', [BerandaController::class, 'updateSuku'])->name('admin.statistik.suku.update');
 
   Route::get('/visi-misi', [VisiMisiController::class, 'index_admin'])->name('visi-misi.index.admin');
   Route::post('/visi-misi', [VisiMisiController::class, 'store'])->name('visi-misi.store.admin');
@@ -54,6 +59,7 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   Route::delete('/pegawai/{employee}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy.admin');
 
   Route::get('/struktur-organisasi', [StrukturOrganisasiController::class, 'index_admin'])->name('struktur-organisasi.index.admin');
+  Route::put('/struktur-organisasi/bagan', [StrukturOrganisasiController::class, 'update_bagan'])->name('struktur-organisasi.bagan.update.admin');
   Route::post('/struktur-organisasi/group', [StrukturOrganisasiController::class, 'store_group'])->name('struktur-organisasi.group.store.admin');
   Route::put('/struktur-organisasi/group/{orgGroup}', [StrukturOrganisasiController::class, 'update_group'])->name('struktur-organisasi.group.update.admin');
   Route::delete('/struktur-organisasi/group/{orgGroup}', [StrukturOrganisasiController::class, 'destroy_group'])->name('struktur-organisasi.group.destroy.admin');
@@ -89,7 +95,7 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::prefix('/author')->middleware(['auth','author'])->group(function () {
-  Route::get('/', [AuthorArtikelController::class, 'index'])->name('artikel.index.author');
+  Route::get('/', [ArtikelController::class, 'index_author'])->name('artikel.index.author');
   Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store.author');
   Route::get('/artikel/{article}/edit', [ArtikelController::class, 'edit_author'])->name('artikel.edit.author');
   Route::put('/artikel/{article}', [ArtikelController::class, 'update'])->name('artikel.update.author');

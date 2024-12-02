@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\OrgGroup;
 use App\Models\OrgStructure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StrukturOrganisasiController extends Controller
 {
@@ -96,6 +97,40 @@ class StrukturOrganisasiController extends Controller
             'message' => 'Berhasil memperbarui pegawai',
         ]);
     }
+
+    public function update_bagan(Request $request)
+    {
+        // Ensure the request contains a file
+        if ($request->hasFile('bagan')) {
+            // Define the predetermined file name and path
+            $fileName = 'struktur-kepengurusan.png';
+            $filePath = 'images/bagan/' . $fileName;
+    
+            // Check if the file already exists and delete it
+            if (Storage::disk('public')->exists($filePath)) {
+                Storage::disk('public')->delete($filePath);
+            }
+    
+            // Store the new file with the predetermined name
+            $request->file('bagan')->storeAs('images/bagan', $fileName, 'public');
+    
+            return redirect()->back()->with([
+                'type' => 'success',
+                'message' => 'Berhasil mengubah bagan',
+            ]);
+        }
+    
+        return redirect()->back()->with([
+            'type' => 'error',
+            'message' => 'File bagan tidak ditemukan!',
+        ]);
+    
+        return redirect()->back()->with([
+            'type' => 'success',
+            'message' => 'Berhasil mengubah bagan',
+        ]);
+    }
+    
 
     public function destroy(OrgStructure $orgStructure) {
         $orgStructure->delete();

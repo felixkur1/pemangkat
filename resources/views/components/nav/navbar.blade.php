@@ -35,8 +35,8 @@ $currentRoute = request()->url();
     <a href="{{ route('beranda.index.guest') }}" class="flex items-center gap-2 space-x-3 rtl:space-x-reverse">
       <img src="{{ asset('lambang-kabupaten-sambas.png') }}" class="h-12" alt="Logo Kabupaten Sambas">
       <div class="flex flex-col">
-        <span class="text-2xl font-semibold whitespace-nowrap text-white">Desa Jelutung</span>
-        <span class="text-lg font-semibold whitespace-nowrap text-white">Kecamatan Pemangkat</span>
+        <span class="text-base font-semibold whitespace-nowrap text-white">Desa Jelutung</span>
+        <span class="text-sm font-semibold whitespace-nowrap text-white">Kecamatan Pemangkat</span>
       </div>
     </a>
   

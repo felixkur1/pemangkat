@@ -16,7 +16,7 @@
   </div>
   <div class="flex flex-col lg:flex-row lg:overflow-x-auto lg:whitespace-nowrap lg:w-full gap-5">
     @foreach ($articles as $a)
-    <div class="md:max-w-sm w-full bg-white rounded-xl dark:bg-gray-800 dark:border-gray-700 lg:flex-shrink-0">
+    <div class="md:max-w-sm w-full bg-white rounded-xl lg:flex-shrink-0">
       <a href="{{ route('artikel.show.guest', $a->slug) }}" class="hover:opacity-60 transition-all duration-300">
         <div class="relative w-full pb-[75%] md:pb-[75%] shadow">
           <img class="absolute top-0 left-0 w-full h-full object-cover rounded-t-lg" loading="lazy" src="{{ asset('/storage/'.$a->thumbnail) }}" alt="{{ $a->title }}"/>

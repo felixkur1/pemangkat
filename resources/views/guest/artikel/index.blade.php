@@ -11,9 +11,14 @@
 @endphp
 
 <x-layout.guest>
-  <header class="mb-4 p-4 bg-white shadow-md rounded-md">
-    <h1 class="font-bold text-2xl">Artikel Terkini</h1>
-  </header>
+  <div class="relative h-[calc(100vh-12rem)] w-full">
+    <img class="absolute inset-0 object-cover w-full h-full brightness-50" src="{{ asset('guest-background.jpg') }}" alt="">
+
+    <div class="absolute flex-col inset-0 flex items-center justify-center gap-4 z-10 text-center">
+      <p class="text-white text-4xl font-bold">Artikel</p>
+      <p class="text-white text-xl font-semibold">Desa Jelutung</p>
+    </div>
+  </div>
   {{-- Search, Sort, dan Filter --}}
   <section class="flex flex-row p-4 md:flex-row gap-2 bg-white rounded-lg shadow-sm">
     <form action="{{ route('artikel.index.guest') }}" method="GET" class="flex flex-col gap-2 bg-white rounded-lg w-full">
@@ -33,7 +38,7 @@
     </form>
   </section>
 
-  <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center">
+  <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(340px,1fr))] justify-items-center p-4">
     @foreach($artikel as $a)
       <div class="md:max-w-sm w-full bg-white rounded-xl dark:bg-gray-800 dark:border-gray-700 lg:flex-shrink-0">
         <a href="{{ route('artikel.show.guest', $a->slug) }}" class="hover:opacity-60 transition-all duration-300">

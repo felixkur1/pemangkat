@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrgGroup extends Model
 {
     public $fillable = [
+        'id',
         'title'
     ];
 

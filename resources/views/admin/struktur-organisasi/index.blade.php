@@ -3,6 +3,20 @@
     <h1 class="font-bold text-2xl">Struktur Organisasi</h1>
   </header>
   <main class="flex flex-col gap-4 pb-20">
+    <section class="flex flex-col p-4 gap-4 bg-white rounded-lg shadow-sm">
+      <form action="{{ route('struktur-organisasi.bagan.update.admin') }}" method="post" enctype="multipart/form-data" class="flex flex-col items-center">
+        @csrf
+        @method('PUT')
+        <img class="object-cover w-full h-full rounded-t-lg md:rounded-l-lg" src="{{ asset('storage/images/bagan/struktur-kepengurusan.png') }}" alt=""/>
+        <div class="w-full flex flex-col gap-2 mb-4">
+          <label class="block text-sm font-medium text-gray-900 dark:text-white" for="thumbnail">Bagan Struktur</label>
+          <input name="bagan" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none " id="bagan" type="file">
+        </div>
+        <x-form.button type="submit">
+          Edit
+        </x-form.button>
+      </form>
+    </section>
   @if ($orgGroups->isEmpty())
     <section class="flex flex-row p-4 gap-2 bg-white rounded-lg shadow-sm">
       <div class="block p-2.5 w-full text-sm text-gray-500 bg-gray-50 text-center">Belum ada kelompok...</div>
