@@ -1,6 +1,6 @@
 <x-layout.admin>
   <header class="mb-4 p-4 bg-white shadow-md rounded-md">
-    <h1 class="font-bold text-2xl">Struktur Organisasi</h1>
+    <h1 class="font-bold text-2xl">Susunan Organisasi</h1>
   </header>
   <main class="flex flex-col gap-4 pb-20">
     <section class="flex flex-col p-4 gap-4 bg-white rounded-lg shadow-sm">

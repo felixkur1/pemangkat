@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LokasiPentingController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BerandaController::class, 'index_guest'])->name('beranda.index.guest');
@@ -46,6 +47,10 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
   Route::put('/beranda/statistik/pekerjaan', [BerandaController::class, 'updatePekerjaan'])->name('admin.statistik.pekerjaan.update');
   Route::put('/beranda/statistik/agama', [BerandaController::class, 'updateAgama'])->name('admin.statistik.agama.update');
   Route::put('/beranda/statistik/suku', [BerandaController::class, 'updateSuku'])->name('admin.statistik.suku.update');
+
+  Route::post('/statistik', [StatisticController::class, 'store'])->name('statistic.store.admin');
+  Route::put('/statistik/update', [StatisticController::class, 'update'])->name('statistik.update.admin');
+  Route::delete('/statistik/{statistic}', [StatisticController::class, 'destroy'])->name('statistik.destroy.admin');
 
   Route::get('/visi-misi', [VisiMisiController::class, 'index_admin'])->name('visi-misi.index.admin');
   Route::post('/visi-misi', [VisiMisiController::class, 'store'])->name('visi-misi.store.admin');

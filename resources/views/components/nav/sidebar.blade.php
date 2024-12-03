@@ -16,7 +16,7 @@
     'urls' => [route('pegawai.index.admin'), route('struktur-organisasi.index.admin')],
     'items' => [
         ['name' => 'Pegawai', 'url' => route('pegawai.index.admin')],
-        ['name' => 'Struktur Organisasi', 'url' => route('struktur-organisasi.index.admin')],
+        ['name' => 'Susunan Organisasi', 'url' => route('struktur-organisasi.index.admin')],
     ],
   ],
   [

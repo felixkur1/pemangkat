@@ -6,10 +6,10 @@
 
 		<div class="h-screen flex flex-1 items-center justify-center md:bg-white bg-slate-200">
 			<img src="{{ asset('gunung-gajah.jpg') }}" alt="" class="object-cover h-full md:hidden absolute bg-blend-darken">
-			<form class="bg-white p-6 rounded-xl z-20 flex flex-col items-center" action="/login" method="post">
+			<form class="bg-white p-6 rounded-xl z-20 flex flex-col items-center w-72" action="/login" method="post">
 				<img src="{{ asset('lambang-kabupaten-sambas.png') }}" alt="" class="w-16 mb-5">
 				<div class="text-2xl font-semibold mb-5">
-					Kecamatan Pemangkat
+					Desa Jelutung
 				</div>
 				@csrf
 				<div class="relative z-0 w-full mb-5 group">

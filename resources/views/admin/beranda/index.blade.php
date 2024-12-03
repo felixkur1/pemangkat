@@ -113,17 +113,39 @@
         </div>
       </div>
       <x-form.button type="submit">
-        Tambah
+        Perbarui
       </x-form.button>
     </form>
   </section>
 
   <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm mb-4">
-    <h2 class="text-xl font-semibold">Jenjang Pendidikan</h2>
-    <form action="{{ route('admin.statistik.pendidikan.update') }}" method="post" class="flex flex-col gap-2">
+    <form action="{{ route('statistik.update.admin') }}" method="post" class="flex flex-col gap-2">
       @csrf
       @method('PUT')
-      <div class="flex flex-row gap-2 w-full">
+      <input type="hidden" name="category" value="pendidikan">
+      <div class="flex flex-row justify-between">
+        <h2 class="text-xl font-semibold">Jenjang Pendidikan</h2>
+        <x-form.button type="submit">
+          Simpan
+        </x-form.button>
+      </div>
+      @foreach ($pendidikan as $p)
+        <div class="flex flex-row gap-2 w-full">
+          <div class="flex flex-col gap-2 w-full">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][label]" id="label[{{ $p->id }}]" value="{{ $p->label }}"/>
+          </div>
+          <div class="w-1/6 flex flex-col gap-2">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][jumlah]" id="jumlah[{{ $p->id }}]" value="{{ $p->jumlah }}"/>
+          </div>
+          <x-form.button onclick="openModal('{{ route('statistik.destroy.admin', $p->id) }}', 'delete')" use="destroy" type="button" data-modal-target="modal" data-modal-toggle="modal">
+            <svg class="w-5 h-5 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+            </svg>
+          </x-form.button>
+        </div>
+      @endforeach
+      
+      {{-- <div class="flex flex-row gap-2 w-full">
         <div class="flex-1">
           <label class="block text-sm font-medium text-gray-900 mb-2" for="belum_sekolah">Belum Sekolah</label>
           <x-form.input type="text" name="belum_sekolah" id="belum_sekolah" value="{{ $belum_sekolah->jumlah ?? 0 }}"/>
@@ -179,7 +201,24 @@
       </div>
 
       <x-form.button type="submit">
-        Tambah
+        Perbarui
+      </x-form.button> --}}
+    </form>
+    <form action="{{ route('statistic.store.admin') }}" method="POST" class="flex flex-col gap-4">
+      @csrf
+      @method('POST')
+      <input type="hidden" name="category" value="pendidikan">
+      <h2 class="text-xl font-semibold">Tambah Data</h2>
+      <div class="flex flex-row gap-2 w-full">
+        <div class="flex flex-col gap-2 w-full">
+          <x-form.input type="text" name="label" id="label" placeholder="Label baru..."/>
+        </div>
+        <div class="w-1/6 flex flex-col gap-2">
+          <x-form.input type="text" name="jumlah" id="jumlah" placeholder="Jumlah..."/>
+        </div>
+      </div>
+      <x-form.button type="submit">
+        Tambahkan
       </x-form.button>
     </form>
   </section>
@@ -251,7 +290,7 @@
       </div>
 
       <x-form.button type="submit">
-        Tambah
+        Perbarui
       </x-form.button>
     </form>
   </section>
@@ -295,13 +334,13 @@
       </div>
 
       <x-form.button type="submit">
-        Tambah
+        Perbarui
       </x-form.button>
     </form>
   </section>
 
   <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm mb-4">
-    <h2 class="text-xl font-semibold">Agama</h2>
+    <h2 class="text-xl font-semibold">Suku</h2>
     <form action="{{ route('admin.statistik.suku.update') }}" method="post" class="flex flex-col gap-2">
       @csrf
       @method('PUT')
@@ -324,8 +363,11 @@
       </div>
 
       <x-form.button type="submit">
-        Tambah
+        Perbarui
       </x-form.button>
     </form>
   </section>
+  <x-modal>
+
+  </x-modal>
 </x-layout.admin>

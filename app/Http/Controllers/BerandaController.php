@@ -42,6 +42,9 @@ class BerandaController extends Controller
         $laki_laki = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Laki-Laki')->first();
         $perempuan = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Perempuan')->first();
 
+        $pendidikan = Statistic::query()->where('category', '=', 'pendidikan')->orderBy('id', 'asc')->get();
+
+
         $belum_sekolah = Statistic::query()->where('category', '=', 'pendidikan')->where('label', '=', 'Belum Sekolah')->first();
         $sd = Statistic::query()->where('category', '=', 'pendidikan')->where('label', '=', 'SD')->first();
         $smp = Statistic::query()->where('category', '=', 'pendidikan')->where('label', '=', 'SMP')->first();
@@ -79,6 +82,7 @@ class BerandaController extends Controller
         return view('admin.beranda.index', compact(
             'greetings', 'history', 'profile_video',
             'total_jiwa', 'kepala_keluarga', 'laki_laki', 'perempuan',
+            'pendidikan',
             'belum_sekolah', 'sd', 'smp', 'sma', 'd1', 'd2', 'd3', 's1', 's2', 's3',
             'petani_pekebun', 'buruh_tani', 'buruh_bangunan', 'wiraswasta', 'pns', 'pedagang', 'pengrajin', 'peternak', 'nelayan', 'tni', 'lain',
             'islam', 'buddha', 'katholik', 'hindu', 'kristen', 'kong_hu_chu',
