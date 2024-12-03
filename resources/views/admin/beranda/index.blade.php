@@ -118,6 +118,7 @@
     </form>
   </section>
 
+  {{-- Edit Pendidikan --}}
   <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm mb-4">
     <form action="{{ route('statistik.update.admin') }}" method="post" class="flex flex-col gap-2">
       @csrf
@@ -144,65 +145,6 @@
           </x-form.button>
         </div>
       @endforeach
-      
-      {{-- <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="belum_sekolah">Belum Sekolah</label>
-          <x-form.input type="text" name="belum_sekolah" id="belum_sekolah" value="{{ $belum_sekolah->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="sd">SD</label>
-          <x-form.input type="text" name="sd" id="sd" value="{{ $sd->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-      
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="smp">SMP</label>
-          <x-form.input type="text" name="smp" id="smp" value="{{ $smp->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="sma">SMA</label>
-          <x-form.input type="text" name="sma" id="sma" value="{{ $sma->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="d1">D1</label>
-          <x-form.input type="text" name="d1" id="d1" value="{{ $d1->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="d2">D2</label>
-          <x-form.input type="text" name="d2" id="d2" value="{{ $d2->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="d3">D3</label>
-          <x-form.input type="text" name="d3" id="d3" value="{{ $d3->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="s1">S1</label>
-          <x-form.input type="text" name="s1" id="s1" value="{{ $s1->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="s2">S2</label>
-          <x-form.input type="text" name="s2" id="s2" value="{{ $s2->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="s3">S3</label>
-          <x-form.input type="text" name="s3" id="s3" value="{{ $s3->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <x-form.button type="submit">
-        Perbarui
-      </x-form.button> --}}
     </form>
     <form action="{{ route('statistic.store.admin') }}" method="POST" class="flex flex-col gap-4">
       @csrf
@@ -223,151 +165,147 @@
     </form>
   </section>
 
+  {{-- Edit Pekerjaan --}}
   <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm mb-4">
-    <h2 class="text-xl font-semibold">Pekerjaan</h2>
-    <form action="{{ route('admin.statistik.pekerjaan.update') }}" method="post" class="flex flex-col gap-2">
+    <form action="{{ route('statistik.update.admin') }}" method="post" class="flex flex-col gap-2">
       @csrf
       @method('PUT')
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="petani_pekebun">Petani/Pekebun</label>
-          <x-form.input type="text" name="petani_pekebun" id="petani_pekebun" value="{{ $petani_pekebun->jumlah ?? 0 }}"/>
+      <input type="hidden" name="category" value="pekerjaan">
+      <div class="flex flex-row justify-between">
+        <h2 class="text-xl font-semibold">Pekerjaan</h2>
+        <x-form.button type="submit">
+          Simpan
+        </x-form.button>
+      </div>
+      @foreach ($pekerjaan as $p)
+        <div class="flex flex-row gap-2 w-full">
+          <div class="flex flex-col gap-2 w-full">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][label]" id="label[{{ $p->id }}]" value="{{ $p->label }}"/>
+          </div>
+          <div class="w-1/6 flex flex-col gap-2">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][jumlah]" id="jumlah[{{ $p->id }}]" value="{{ $p->jumlah }}"/>
+          </div>
+          <x-form.button onclick="openModal('{{ route('statistik.destroy.admin', $p->id) }}', 'delete')" use="destroy" type="button" data-modal-target="modal" data-modal-toggle="modal">
+            <svg class="w-5 h-5 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+            </svg>
+          </x-form.button>
         </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="buruh_tani">Buruh Tani</label>
-          <x-form.input type="text" name="buruh_tani" id="buruh_tani" value="{{ $buruh_tani->jumlah ?? 0 }}"/>
+      @endforeach
+    </form>
+    <form action="{{ route('statistic.store.admin') }}" method="POST" class="flex flex-col gap-4">
+      @csrf
+      @method('POST')
+      <input type="hidden" name="category" value="pekerjaan">
+      <h2 class="text-xl font-semibold">Tambah Data</h2>
+      <div class="flex flex-row gap-2 w-full">
+        <div class="flex flex-col gap-2 w-full">
+          <x-form.input type="text" name="label" id="label" placeholder="Label baru..."/>
+        </div>
+        <div class="w-1/6 flex flex-col gap-2">
+          <x-form.input type="text" name="jumlah" id="jumlah" placeholder="Jumlah..."/>
         </div>
       </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="buruh_bangunan">Buruh Bangunan</label>
-          <x-form.input type="text" name="buruh_bangunan" id="buruh_bangunan" value="{{ $buruh_bangunan->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="wiraswasta">Wiraswasta</label>
-          <x-form.input type="text" name="wiraswasta" id="wiraswasta" value="{{ $wiraswasta->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="pns">PNS</label>
-          <x-form.input type="text" name="pns" id="pns" value="{{ $pns->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="pedagang">Pedagang</label>
-          <x-form.input type="text" name="pedagang" id="pedagang" value="{{ $pedagang->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="pengrajin">Pengrajin</label>
-          <x-form.input type="text" name="pengrajin" id="pengrajin" value="{{ $pengrajin->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="peternak">Peternak</label>
-          <x-form.input type="text" name="peternak" id="peternak" value="{{ $peternak->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="nelayan">Nelayan</label>
-          <x-form.input type="text" name="nelayan" id="nelayan" value="{{ $nelayan->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="tni">TNI</label>
-          <x-form.input type="text" name="tni" id="tni" value="{{ $tni->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="lain">Lainnya</label>
-          <x-form.input type="text" name="lain" id="lain" value="{{ $lain->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
       <x-form.button type="submit">
-        Perbarui
+        Tambahkan
       </x-form.button>
     </form>
   </section>
 
+  {{-- Edit Agama --}}
   <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm mb-4">
-    <h2 class="text-xl font-semibold">Agama</h2>
-    <form action="{{ route('admin.statistik.agama.update') }}" method="post" class="flex flex-col gap-2">
+    <form action="{{ route('statistik.update.admin') }}" method="post" class="flex flex-col gap-2">
       @csrf
       @method('PUT')
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="islam">Islam</label>
-          <x-form.input type="text" name="islam" id="islam" value="{{ $islam->jumlah ?? 0 }}"/>
+      <input type="hidden" name="category" value="agama">
+      <div class="flex flex-row justify-between">
+        <h2 class="text-xl font-semibold">Agama</h2>
+        <x-form.button type="submit">
+          Simpan
+        </x-form.button>
+      </div>
+      @foreach ($agama as $p)
+        <div class="flex flex-row gap-2 w-full">
+          <div class="flex flex-col gap-2 w-full">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][label]" id="label[{{ $p->id }}]" value="{{ $p->label }}"/>
+          </div>
+          <div class="w-1/6 flex flex-col gap-2">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][jumlah]" id="jumlah[{{ $p->id }}]" value="{{ $p->jumlah }}"/>
+          </div>
+          <x-form.button onclick="openModal('{{ route('statistik.destroy.admin', $p->id) }}', 'delete')" use="destroy" type="button" data-modal-target="modal" data-modal-toggle="modal">
+            <svg class="w-5 h-5 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+            </svg>
+          </x-form.button>
         </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="buddha">Buddha</label>
-          <x-form.input type="text" name="buddha" id="buddha" value="{{ $buddha->jumlah ?? 0 }}"/>
+      @endforeach
+    </form>
+    <form action="{{ route('statistic.store.admin') }}" method="POST" class="flex flex-col gap-4">
+      @csrf
+      @method('POST')
+      <input type="hidden" name="category" value="agama">
+      <h2 class="text-xl font-semibold">Tambah Data</h2>
+      <div class="flex flex-row gap-2 w-full">
+        <div class="flex flex-col gap-2 w-full">
+          <x-form.input type="text" name="label" id="label" placeholder="Label baru..."/>
+        </div>
+        <div class="w-1/6 flex flex-col gap-2">
+          <x-form.input type="text" name="jumlah" id="jumlah" placeholder="Jumlah..."/>
         </div>
       </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="katholik">Katholik</label>
-          <x-form.input type="text" name="katholik" id="katholik" value="{{ $katholik->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="hindu">Hindu</label>
-          <x-form.input type="text" name="hindu" id="hindu" value="{{ $hindu->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="kristen">Kristen</label>
-          <x-form.input type="text" name="kristen" id="kristen" value="{{ $kristen->jumlah ?? 0 }}"/>
-        </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="kong_hu_chu">Kong Hu Chu</label>
-          <x-form.input type="text" name="kong_hu_chu" id="kong_hu_chu" value="{{ $kong_hu_chu->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
       <x-form.button type="submit">
-        Perbarui
+        Tambahkan
       </x-form.button>
     </form>
   </section>
 
+  {{-- Edit Suku --}}
   <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm mb-4">
-    <h2 class="text-xl font-semibold">Suku</h2>
-    <form action="{{ route('admin.statistik.suku.update') }}" method="post" class="flex flex-col gap-2">
+    <form action="{{ route('statistik.update.admin') }}" method="post" class="flex flex-col gap-2">
       @csrf
       @method('PUT')
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="melayu">Melayu</label>
-          <x-form.input type="text" name="melayu" id="melayu" value="{{ $melayu->jumlah ?? 0 }}"/>
+      <input type="hidden" name="category" value="suku">
+      <div class="flex flex-row justify-between">
+        <h2 class="text-xl font-semibold">Suku</h2>
+        <x-form.button type="submit">
+          Simpan
+        </x-form.button>
+      </div>
+      @foreach ($suku as $p)
+        <div class="flex flex-row gap-2 w-full">
+          <div class="flex flex-col gap-2 w-full">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][label]" id="label[{{ $p->id }}]" value="{{ $p->label }}"/>
+          </div>
+          <div class="w-1/6 flex flex-col gap-2">
+            <x-form.input type="text" name="statistik[{{ $p->id }}][jumlah]" id="jumlah[{{ $p->id }}]" value="{{ $p->jumlah }}"/>
+          </div>
+          <x-form.button onclick="openModal('{{ route('statistik.destroy.admin', $p->id) }}', 'delete')" use="destroy" type="button" data-modal-target="modal" data-modal-toggle="modal">
+            <svg class="w-5 h-5 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+            </svg>
+          </x-form.button>
         </div>
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="cina">Cina</label>
-          <x-form.input type="text" name="cina" id="cina" value="{{ $cina->jumlah ?? 0 }}"/>
+      @endforeach
+    </form>
+    <form action="{{ route('statistic.store.admin') }}" method="POST" class="flex flex-col gap-4">
+      @csrf
+      @method('POST')
+      <input type="hidden" name="category" value="suku">
+      <h2 class="text-xl font-semibold">Tambah Data</h2>
+      <div class="flex flex-row gap-2 w-full">
+        <div class="flex flex-col gap-2 w-full">
+          <x-form.input type="text" name="label" id="label" placeholder="Label baru..."/>
+        </div>
+        <div class="w-1/6 flex flex-col gap-2">
+          <x-form.input type="text" name="jumlah" id="jumlah" placeholder="Jumlah..."/>
         </div>
       </div>
-
-      <div class="flex flex-row gap-2 w-full">
-        <div class="flex-1">
-          <label class="block text-sm font-medium text-gray-900 mb-2" for="lainnya">Lainnya</label>
-          <x-form.input type="text" name="lainnya" id="lainnya" value="{{ $lain_suku->jumlah ?? 0 }}"/>
-        </div>
-      </div>
-
       <x-form.button type="submit">
-        Perbarui
+        Tambahkan
       </x-form.button>
     </form>
   </section>
+
   <x-modal>
-
   </x-modal>
 </x-layout.admin>

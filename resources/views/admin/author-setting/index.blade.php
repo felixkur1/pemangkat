@@ -25,33 +25,25 @@
     {{-- Insert Form --}}
     <section class="flex flex-col p-4 gap-2 bg-white rounded-lg shadow-sm">
       <form action="{{ route('author-setting.store.admin') }}" method="POST" class="flex flex-col gap-2">
-
-      
         @csrf
         @method('POST')
         <h2 class="text-xl font-semibold">Tambahkan Penulis</h2>
         <div class="flex flex-col md:flex-row gap-4 w-full">
-          <div class="flex flex-row gap-4 flex-1">
-          </div>
-          <div class="flex flex-col gap-4 flex-1">
+          <div class="flex flex-col gap-2 flex-1">
             <div class="flex flex-col gap-2 flex-1">
               <label class="block text-sm font-medium text-gray-900 dark:text-white" for="name">Nama Penulis</label>
               <x-form.input type="text" name="name" id="name"/>
             </div>
-          </div>
-          <div class="flex flex-col gap-4 flex-1">
             <div class="flex flex-col gap-2 flex-1">
               <label class="block text-sm font-medium text-gray-900 dark:text-white" for="username">Username</label>
               <x-form.input type="text" name="username" id="username"/>
             </div>
           </div>
-          <div class="flex flex-col gap-4 flex-1">
+          <div class="flex flex-col gap-2 flex-1">
             <div class="flex flex-col gap-2 flex-1">
               <label class="block text-sm font-medium text-gray-900 dark:text-white" for="email">Email</label>
               <x-form.input type="email" name="email" id="email"/>
             </div>
-          </div>
-          <div class="flex flex-col gap-4 flex-1">
             <div class="flex flex-col gap-2 flex-1">
               <label class="block text-sm font-medium text-gray-900 dark:text-white" for="password">Password</label>
               <x-form.input type="password" name="password" id="password"/>

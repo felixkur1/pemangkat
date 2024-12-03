@@ -32,7 +32,7 @@
           <div class="flex flex-col gap-4 flex-1">
             <div class="flex flex-col gap-2 flex-1">
               <label class="block text-sm font-medium text-gray-900 dark:text-white" for="title">Password Baru</label>
-              <x-form.input type="text" name="password" id="password"/>
+              <x-form.input type="password" name="password" id="password"/>
             </div>
           </div>
         </div>

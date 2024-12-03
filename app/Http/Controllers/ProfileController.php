@@ -32,12 +32,11 @@ class ProfileController extends Controller
             $user->password = $request->input('password');
         }
         
-
         $user->save();
 
         return redirect()->back()->with([
             'type' => 'success',
-            'message' => 'Berhasil memperbarui pegawai',
+            'message' => 'Berhasil memperbarui user',
         ]);
     }
     
