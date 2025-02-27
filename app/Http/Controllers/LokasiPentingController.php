@@ -17,8 +17,8 @@ class LokasiPentingController extends Controller
     {
         $query = LokasiPenting::query();
 
-        if ($request->filled('title')) {
-            $query->where('title', 'like', '%'.strtolower($request->input('title')).'%');
+        if ($request->filled('location_name')) {
+            $query->where('location_name', 'like', '%'.strtolower($request->input('location_name')).'%');
         }
 
         $sort = $request->input('sort', 'newest');

@@ -18,7 +18,7 @@
     {{-- Search, Sort, dan Filter --}}
     <section class="flex flex-col p-4 md:flex-row gap-2 bg-white rounded-lg shadow-sm">
       <form action="{{ route('lokasi-penting.index.guest') }}" method="GET" class="flex flex-col md:flex-row gap-2 bg-white rounded-lg w-full">
-        <x-form.search name="title" placeholder="Cari berdasarkan nama..." value="{{ request()->input('title') }}"/>
+        <x-form.search name="location_name" placeholder="Cari berdasarkan nama..." value="{{ request()->input('location_name') }}"/>
         <div class="flex-1 flex items-center flex-col md:flex-row gap-2">
           <span>Urutkan Berdasarkan:</span>
           <x-form.radio :options="$sortOptions" name="sort" action="{{ route('dokumen-publik.index.guest') }}" selected-value="{{ request()->input('sort') ?? 'newest' }}"/>

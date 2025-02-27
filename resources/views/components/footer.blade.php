@@ -82,7 +82,7 @@ $webDesa = [
           </div>
         </a>
         <h2 class="mb-2 text-sm font-semibold text-white uppercase dark:text-white">Lokasi Kantor</h2>
-        <iframe class="rounded-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.978170143096!2d108.97358549999998!3d1.1758371000000027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31e482e781e5b397%3A0xf4b3656562d567e4!2sKantor%20Camat%20Pemangkat!5e0!3m2!1sid!2sid!4v1732758727831!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="rounded-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.004234787337!2d108.98034269620652!3d1.157453305419668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31e4834dcba27165%3A0x9806766679ebedfc!2sKantor%20Desa%20Jelutung!5e0!3m2!1sid!2sid!4v1740637273633!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
       <div class="grid grid-cols-2 gap-12 sm:gap-8 sm:grid-cols-3 md:w-1/2">
