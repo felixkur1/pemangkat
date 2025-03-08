@@ -9,25 +9,42 @@ use Illuminate\Contracts\View\View;
 
 class Statistics extends Component
 {
+    public $demografi_update;
     public $total_jiwa = 4524;
     public $kepala_keluarga = 1497;
     public $laki_laki = 2334;
     public $perempuan = 2190;
 
     public $education_data;
+    public $education_update;
+
     public $business_data;
+    public $business_update;
+
     public $religion_data;
+    public $religion_update;
+
     public $race_data;
+    public $race_update;
 
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        $this->total_jiwa = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Total Jiwa')->first()->jumlah;
-        $this->kepala_keluarga = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Kepala Keluarga')->first()->jumlah;
-        $this->laki_laki = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Laki-Laki')->first()->jumlah;
-        $this->perempuan = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Perempuan')->first()->jumlah;
+
+        $total_jiwa = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Total Jiwa')->first();
+        $kepala_keluarga = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Kepala Keluarga')->first();
+        $laki_laki = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Laki-Laki')->first();
+        $perempuan = Statistic::query()->where('category', '=', 'demografi')->where('label', '=', 'Perempuan')->first();
+        
+        $this->total_jiwa = $total_jiwa->jumlah;
+        $this->kepala_keluarga = $kepala_keluarga->jumlah;
+        $this->laki_laki = $laki_laki->jumlah;
+        $this->perempuan = $perempuan->jumlah;
+
+        $this->demografi_update = max($total_jiwa->updated_at, $kepala_keluarga->updated_at, $laki_laki->updated_at, $perempuan->updated_at);
+
 
         // $this->education_data = [
 
@@ -79,9 +96,17 @@ class Statistics extends Component
     
         // Map data ke dalam format yang sesuai
         $this->education_data = $this->mapData($grouped->get('pendidikan'));
+        $this->education_update = $grouped->get('pendidikan')->max('updated_at');
+
         $this->business_data = $this->mapData($grouped->get('pekerjaan'));
+        $this->business_update = $grouped->get('pekerjaan')->max('updated_at');
+
         $this->religion_data = $this->mapData($grouped->get('agama'));
+        $this->religion_update = $grouped->get('agama')->max('updated_at');
+
         $this->race_data = $this->mapData($grouped->get('suku'));
+        $this->race_update = $grouped->get('suku')->max('updated_at');
+
     }
 
     /**
@@ -100,6 +125,8 @@ class Statistics extends Component
             ];
         })->toArray();
     }
+
+    
 
     /**
      * Get the view / contents that represent the component.

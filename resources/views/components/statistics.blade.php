@@ -1,7 +1,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <main class="mt-4 flex flex-col gap-8">
 	<section class="border-b-2 border-gray-200 p-4">
-		<h2 class="text-2xl text-center mb-4">Demografi Penduduk</h2>
+		<h2 class="text-3xl font-semibold text-center mb-4">Demografi Penduduk</h2>
+		<div class="bg-amber-500 font-semibold text-white w-full p-4 rounded-lg shadow-md mb-4">
+			Terakhir diperbarui {{ \Carbon\Carbon::parse($demografi_update)->translatedFormat('j F Y H:i') }}
+		</div>
 		<div class="grid md:grid-cols-2 grid-cols-1 gap-4 place-content-center place-items-center text-white">
 			<div class="bg-emerald-700 w-full max-w-lg p-4 rounded-lg shadow-md inset-2">
 				<h3 class="uppercase text-center font-semibold text-2xl">
@@ -43,13 +46,16 @@
 	</section>
 
 	<section class="p-4">
-		<h2 class="text-2xl text-center mb-4">Grafik</h2>
+		<h2 class="text-3xl font-semibold text-center mb-4">Grafik</h2>
 		<div class="grid md:grid-cols-2 grid-cols-1 gap-4 place-content-center place-items-center p-4">
 			{{-- Pendidikan --}}
 			<div class="w-full p-4">
 				<h3 class="text-center text-2xl font-semibold mb-4">
 					Jenjang Pendidikan Formal
 				</h3>
+				<div class="bg-amber-500 font-semibold text-white w-full p-4 rounded-lg shadow-md mb-4">
+					Terakhir diperbarui {{ \Carbon\Carbon::parse($education_update)->translatedFormat('j F Y H:i') }}
+				</div>
 				<canvas id="educationChart"></canvas>
 				<script>
 					const educationData = @json($education_data);
@@ -108,6 +114,9 @@
 				<h3 class="text-center text-2xl font-semibold mb-4">
 					Mata Pencaharian
 				</h3>
+				<div class="bg-amber-500 font-semibold text-white w-full p-4 rounded-lg shadow-md mb-4">
+					Terakhir diperbarui {{ \Carbon\Carbon::parse($business_update)->translatedFormat('j F Y H:i') }}
+				</div>
 				<canvas id="businessChart"></canvas>
 				<script>
 					// Data Kelompok Usaha
@@ -164,6 +173,9 @@
 				<h3 class="text-center text-2xl font-semibold mb-4">
 					Agama
 				</h3>
+				<div class="bg-amber-500 font-semibold text-white w-full p-4 rounded-lg shadow-md mb-4">
+					Terakhir diperbarui {{ \Carbon\Carbon::parse($religion_update)->translatedFormat('j F Y H:i') }}
+				</div>
 				<canvas id="religionChart"></canvas>
 				<script>
 					// Data Agama
@@ -210,6 +222,9 @@
 				<h3 class="text-center text-2xl font-semibold mb-4">
 					Suku
 				</h3>
+				<div class="bg-amber-500 font-semibold text-white w-full p-4 rounded-lg shadow-md mb-4">
+					Terakhir diperbarui {{ \Carbon\Carbon::parse($race_update)->translatedFormat('j F Y H:i') }}
+				</div>
 				<canvas id="raceChart"></canvas>
 				<script>
 					// Data Agama
