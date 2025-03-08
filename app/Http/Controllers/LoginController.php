@@ -14,18 +14,22 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        
         $login = $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]); 
         
         if (!Auth::attempt($login)){
-            return back()->withInput(["username"=>$login['username']]);
+            return back()
+                ->withInput(["username" => $login['username']])
+                ->with([
+                'type' => 'error',
+                'message' => 'Username atau password salah!']);
         }
-
+    
         $request->session()->regenerate();
-        if ($request->user()->role=='admin'){
+        
+        if ($request->user()->role == 'admin'){
             return redirect()->route('beranda.index.admin');
         } else {
             return redirect()->route('artikel.index.author');
